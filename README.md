@@ -10,6 +10,3 @@ It is an end-to-end Machine Learning project that includes:
 - HTML UI for user input
 
 Users can enter environmental features such as temperature, humidity, wind speed, etc., and the model returns the predicted **FWI value**, which indicates forest fire risk.
-
-### How to Run
-1. Install dependencies:
