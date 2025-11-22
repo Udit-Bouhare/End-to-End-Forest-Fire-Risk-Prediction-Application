@@ -3,6 +3,10 @@
 This project predicts the **Fire Weather Index (FWI)** using the Algerian Forest Fire dataset.  
 It is an **end-to-end Machine Learning application** built with a complete workflow from data processing to deployment.
 
+## 🚀 Live Demo
+Try the app here:  
+👉 **https://end-to-end-forest-fire-risk-prediction.onrender.com**  
+
 ## 🚀 Features
 - Data cleaning & preprocessing  
 - Model training and evaluation  
