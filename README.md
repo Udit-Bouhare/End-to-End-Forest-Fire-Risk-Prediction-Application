@@ -5,7 +5,7 @@ It is an **end-to-end Machine Learning application** built with a complete workf
 
 ## 🚀 Live Demo
 Try the app here:  
-👉 **https://end-to-end-forest-fire-risk-prediction.onrender.com**  
+👉 **https://end-to-end-forest-fire-risk-prediction.onrender.com/predictdata**  
 
 ## 🚀 Features
 - Data cleaning & preprocessing  
