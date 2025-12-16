@@ -1,18 +1,191 @@
-<html>
-    <body>
-        <div class = "login">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .login h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #f7b731;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #888;
+            font-weight: normal;
+            margin-left: 5px;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            color: #333;
+            outline: none;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #56ab2f;
+            background: white;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #f7b731;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #56ab2f;
+        }
+
+        h2 {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7f9f0;
+            border-radius: 10px;
+            text-align: center;
+            color: #56ab2f;
+            font-size: 1.2em;
+            border: 2px solid #56ab2f;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #56ab2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="login">
             <h1>FWI Prediction</h1>
             <!--Main Input For Receiving Query to our ML-->
             <form action="{{ url_for('predict_datapoint')}}" method="post">
-                <input type = "text" name="Temperature" placeholder="Temperature" required="required" /><br>
-                <input type = "text" name="RH" placeholder="RH" required="required" /><br>
-                <input type = "text" name="WS" placeholder="WS" required="required" /><br>
-                <input type = "text" name="Rain" placeholder="Rain" required="required" /><br>
-                <input type = "text" name="FFMC" placeholder="FFMC" required="required" /><br>
-                <input type = "text" name="DMC" placeholder="DMC" required="required" /><br>
-                <input type = "text" name="ISI" placeholder="ISI" required="required" /><br>
-                <input type = "text" name="Classes" placeholder="Classes" required="required" /><br>
-                <input type = "text" name="Region" placeholder="Region" required="required" /><br>
+                
+                <div class="input-group">
+                    <label>Temperature <span class="hint">(in °C, whole number)</span></label>
+                    <input type="number" name="Temperature" placeholder="e.g., 25" required="required" step="1" />
+                </div>
+
+                <div class="input-group">
+                    <label>RH <span class="hint">(Relative Humidity %, whole number)</span></label>
+                    <input type="number" name="RH" placeholder="e.g., 60" required="required" step="1" min="0" max="100" />
+                </div>
+
+                <div class="input-group">
+                    <label>WS <span class="hint">(Wind Speed km/h, whole number)</span></label>
+                    <input type="number" name="WS" placeholder="e.g., 15" required="required" step="1" min="0" />
+                </div>
+
+                <div class="input-group">
+                    <label>Rain <span class="hint">(in mm, decimal allowed)</span></label>
+                    <input type="number" name="Rain" placeholder="e.g., 0.5" required="required" step="0.01" min="0" />
+                </div>
+
+                <div class="input-group">
+                    <label>FFMC <span class="hint">(Fine Fuel Moisture Code, decimal)</span></label>
+                    <input type="number" name="FFMC" placeholder="e.g., 85.5" required="required" step="0.01" />
+                </div>
+
+                <div class="input-group">
+                    <label>DMC <span class="hint">(Duff Moisture Code, decimal)</span></label>
+                    <input type="number" name="DMC" placeholder="e.g., 45.2" required="required" step="0.01" />
+                </div>
+
+                <div class="input-group">
+                    <label>DC <span class="hint">(Drought Code, decimal)</span></label>
+                    <input type="number" name="DC" placeholder="e.g., 150.3" required="required" step="0.01" />
+                </div>
+
+                <div class="input-group">
+                    <label>ISI <span class="hint">(Initial Spread Index, decimal)</span></label>
+                    <input type="number" name="ISI" placeholder="e.g., 8.5" required="required" step="0.01" />
+                </div>
+
+                <div class="input-group">
+                    <label>Classes <span class="hint">(Fire/No Fire)</span></label>
+                    <select name="Classes" required="required">
+                        <option value="">Select...</option>
+                        <option value="0">0 - No Fire</option>
+                        <option value="1">1 - Fire</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Region <span class="hint">(Region Type)</span></label>
+                    <select name="Region" required="required">
+                        <option value="">Select...</option>
+                        <option value="0">0 - Region A</option>
+                        <option value="1">1 - Region B</option>
+                    </select>
+                </div>
                 
                 <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
             </form>
@@ -20,5 +193,9 @@
         <h2>
             The FWI Prediction is {{results}}
         </h2>
-    </body>
+        <div class="back-link">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+</body>
 </html>
